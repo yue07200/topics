@@ -1,3 +1,10 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['username']);
+$username = $isLoggedIn ? $_SESSION['username'] : '';
+$avatarPath = $isLoggedIn && !empty($_SESSION['avatar']) ? $_SESSION['avatar'] : 'default-avatar.png';
+?>
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -19,6 +26,7 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      position: relative;
     }
 
     .container {
@@ -118,10 +126,33 @@
       align-items: center;
       gap: 5px;
     }
+
+    /* 返回首頁按鈕樣式 */
+    .home-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .home-btn:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- 返回首頁按鈕 -->
+    <a href="index.php">
+      <button class="home-btn">返回首頁</button>
+    </a>
+
     <h2>健康管家會員系統</h2>
 
     <div class="tab-buttons">
@@ -130,7 +161,7 @@
     </div>
 
     <!-- 登入表單 -->
-    <form id="loginForm" class="active" action="check_login.php" method="POST">
+    <form id="loginForm" class="active" action="auth.php?action=login" method="POST">
       <input type="text" name="username" placeholder="帳號 / Email" required />
       <input type="password" name="password" placeholder="密碼" required />
       <button type="submit">登入</button>
@@ -138,7 +169,7 @@
     </form>
 
     <!-- 註冊表單 -->
-    <form id="registerForm" action="register.php" method="POST">
+    <form id="registerForm" action="auth.php?action=register" method="POST">
       <input type="text" name="username" placeholder="帳號" required />
       <input type="email" name="email" placeholder="Email" required />
       <input type="password" name="password" placeholder="密碼" required />
