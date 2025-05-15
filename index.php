@@ -185,6 +185,7 @@
         <a href="#">📊 趨勢統計</a>
         <a href="#">🤝 社群挑戰</a>
         <a href="bmi.html">📐 BMI 計算</a>
+        <a href="achievements.php">💪 我的成就</a>
     </nav>
 
     <section class="hero">
