@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>健康管家 Health Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 0;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    .top-function-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #ffffff;
+      padding: 15px 0;
+      gap: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .top-function-nav a {
+      text-decoration: none;
+      color: #4CAF50;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    .top-function-nav a:hover {
+      color: #2e7d32;
+    }
+
+    .hero {
+      background-color: #e8f5e9;
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .features {
+      padding: 40px 0;
+    }
+
+    .features h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .features ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .features li {
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .function-menu {
+      padding: 40px 0;
+    }
+
+    .function-menu h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-card {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-card span {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .map-preview {
+      padding: 40px 0;
+    }
+
+    #map {
+      width: 100%;
+      height: 400px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    footer {
+      background-color: #f1f1f1;
+      color: #666;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>健康管家</h1>
+      <nav>
+        <a href="index.html">首頁</a>
+        <a href="login.php">登入/註冊</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 功能快速導覽列 -->
+  <nav class="top-function-nav container">
+    <a href="#map">📍 地點紀錄</a>
+    <a href="#">🍱 營養分析</a>
+    <a href="#">❤️ 健康建議</a>
+    <a href="#">📊 趨勢統計</a>
+    <a href="#">🤝 社群挑戰</a>
+    <a href="bmi.html">📐 BMI 計算</a>
+    <a href="achievements.php">💪 我的成就</a>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h2>讓飲食更智慧，健康看得見</h2>
+      <p>結合 AI 辨識與地理定位，提供全面性的健康飲食分析與社群互動。</p>
+    </div>
+  </section>
+
+
+  <section class="map-preview container">
+    <h2>地圖預覽</h2>
+    <div id="map"></div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 健康管家 Health Tracker</p>
+    </div>
+  </footer>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+  <script>
+    function initMap() {
+      const defaultLocation = { lat: 25.0330, lng: 121.5654 }; // 台北市
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: defaultLocation,
+      });
+    }
+  </script>
+</body>
+
+</html>
