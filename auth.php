@@ -27,7 +27,8 @@ if ($action === 'login') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user'] = $user;
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['user_id'] = $user['id']; // 儲存使用者 ID
         header("Location: index.php");
         exit();
     } else {
@@ -43,7 +44,7 @@ if ($action === 'login') {
     $fullname = $_POST['fullname'];
     $birthdate = $_POST['birthdate'];
     $gender = $_POST['gender'];
-    $allergens = isset($_POST['allergens']) ? implode(',', $_POST['allergens']) : '';
+    $allergens = isset($_POST['allergens']) ? implode(',', array_map('htmlspecialchars', $_POST['allergens'])) : '';
     $diet = $_POST['diet'];
     $goal = $_POST['goal'];
 
@@ -62,7 +63,10 @@ if ($action === 'login') {
     $stmt = $pdo->prepare("INSERT INTO users (username, email, password, fullname, birthdate, gender, allergens, diet, goal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$username, $email, $hashed_password, $fullname, $birthdate, $gender, $allergens, $diet, $goal]);
 
-    header("Location: login.php?registered=1");
+    // 自動登入
+    $_SESSION['username'] = $username;
+    $_SESSION['user_id'] = $pdo->lastInsertId(); // 自動獲取新增的使用者 ID
+    header("Location: index.php");
     exit();
 
 } else {

@@ -178,6 +178,51 @@ if ($isLoggedIn) {
             padding: 20px 0;
             font-size: 0.9rem;
         }
+        /* 修正 user-info 的 CSS 設計 */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .account-icon {
+      width: 32px; height: 32px;
+      background-color: #ccc; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; font-weight: bold;
+    }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #4CAF50;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #45a049;
+        }
+
+        .login-btn {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #4CAF50;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #45a049;
+        }
         /* 聊天按鈕 */
         .chatbot-button {
             position: fixed;
@@ -283,16 +328,22 @@ if ($isLoggedIn) {
         <div class="container">
             <h1>健康管家</h1>
             <nav>
-                <a href="index.html">首頁</a>
-                <a href="logout.php">登出</a>
-                <a href="login.php">登入/註冊</a>
+                <?php if ($isLoggedIn && isset($user) && is_array($user)): ?>
+                    <div class="user-info">
+                        <a href="?logout=true">登出</a>
+                        <div class="account-icon">👤</div>
+                        <div><?php echo htmlspecialchars($username); ?></div>
+                        
+                    </div>
 
-
-
+                <?php else: ?>
+                    <a href="login.php">登入/註冊</a>
+                <?php endif; ?>
             </nav>
         </div>
     </header>
 
+    
     <!-- 功能快速導覽列 -->
     <nav class="top-function-nav container">
         <a href="#map">📍 地點紀錄</a>
@@ -419,22 +470,6 @@ if ($isLoggedIn) {
         exit();
     }
     ?>
-
-    <section class="container">
-        <h2>歡迎使用健康管家</h2>
-        <p>這裡是您的健康管理平台。</p>
-        <?php if ($isLoggedIn && $user): ?>
-            <h3>您的帳號資訊：</h3>
-            <p>帳號名稱：<?php echo htmlspecialchars($username); ?></p>
-            <p>姓名：<?php echo htmlspecialchars($user['fullname']); ?></p>
-            <p>生日：<?php echo htmlspecialchars($user['birthdate']); ?></p>
-            <p>性別：<?php echo htmlspecialchars($user['gender']); ?></p>
-            <p>飲食習慣：<?php echo htmlspecialchars($user['diet']); ?></p>
-            <p>健康目標：<?php echo htmlspecialchars($user['goal']); ?></p>
-        <?php else: ?>
-            <p>請先登入以查看您的帳號資訊。</p>
-        <?php endif; ?>
-    </section>
 </body>
 
 </html>
