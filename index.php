@@ -79,6 +79,8 @@ if ($isLoggedIn) {
             padding: 15px 0;
             gap: 20px;
             border-bottom: 1px solid #ddd;
+            width: 100vw; /* 確保滿版寬度 */
+            max-width: 100%; /* 確保不會被容器限制 */
         }
 
         .top-function-nav a {
