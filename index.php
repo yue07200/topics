@@ -499,7 +499,6 @@ if ($isLoggedIn) {
         <button onclick="sendChatMessage()">送出</button>
     </div>
     </div>
-    <script src="AIzaSyD9pyeuA9MVPnGqUVLwXvOrd0uTMjRd2QQ" async defer></script>
     <script>
         function initMap() {
             const defaultLocation = { lat: 25.0330, lng: 121.5654 }; // 台北市
