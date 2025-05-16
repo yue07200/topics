@@ -1,7 +1,7 @@
 <?php
 session_start();
-$isLoggedIn = isset($_SESSION['username']);
-$username = $isLoggedIn ? $_SESSION['username'] : '';
+$isLoggedIn = isset($_SESSION['user']);
+$username = $isLoggedIn ? $_SESSION['user'] : '';
 $avatarPath = $isLoggedIn && !empty($_SESSION['avatar']) ? $_SESSION['avatar'] : 'default-avatar.png';
 ?>
 

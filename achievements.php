@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
+// 確保已登入
+if (!isset($_SESSION['user']) || !is_array($_SESSION['user'])) {
     header("Location: login.php");
     exit();
 }
@@ -62,13 +63,12 @@ if ($todayExerciseData && $todayExerciseData['total_duration']) {
             padding: 20px;
         }
         .main-container { /* Changed from .container to avoid conflict with bootstrap if used */
-            background: white;
+            max-width: 800px;
+            margin: 40px auto;
             padding: 20px;
+            background: #fff;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 800px; /* Wider for better layout */
-            margin: 0 auto 20px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         .page-title {
             color: #4CAF50;
@@ -77,6 +77,9 @@ if ($todayExerciseData && $todayExerciseData['total_duration']) {
             font-size: 1.8rem;
         }
         .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -85,8 +88,7 @@ if ($todayExerciseData && $todayExerciseData['total_duration']) {
             cursor: pointer;
             font-size: 1rem;
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
+            
         }
         .back-btn:hover {
             background-color: #388e3c;
